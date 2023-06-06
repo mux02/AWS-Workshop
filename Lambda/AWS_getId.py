@@ -3,7 +3,7 @@ import pymysql
 # rds settings:
 rds_host = "database-aws.cyd5dayxhyym.me-south-1.rds.amazonaws.com"
 rds_username = "admin_AWS"
-rds_password = "MOOMksa_1233"
+rds_password = ""
 rds_db = "workshop_db"
 
 
