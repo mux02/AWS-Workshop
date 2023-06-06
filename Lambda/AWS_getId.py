@@ -1,10 +1,10 @@
 import pymysql
 
 # rds settings:
-rds_host = "database-aws.cyd5dayxhyym.me-south-1.rds.amazonaws.com"
-rds_username = "admin_AWS"
+rds_host = ""
+rds_username = ""
 rds_password = ""
-rds_db = "workshop_db"
+rds_db = ""
 
 
 def lambda_handler(event, context):

@@ -3,10 +3,10 @@ import pymysql
 from datetime import datetime
 
 # rds settings:
-rds_host = "database-aws.cyd5dayxhyym.me-south-1.rds.amazonaws.com"
-rds_username = "admin_AWS"
+rds_host = ""
+rds_username = ""
 rds_password = ""
-rds_db = "workshop_db"
+rds_db = ""
 
 # Extract datetime values
 def Datetime_toString(date: datetime):
@@ -28,7 +28,7 @@ def lambda_handler(event, context):
             "sendMsg": f'[DB-Error] Cannot connect to DB: {e}'
         }
 
-    Username = event['Username'].lower()
+    Username = event['Username']
     Password = event['User_Password']
     
     with conn.cursor() as cur:
