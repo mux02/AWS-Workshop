@@ -8,7 +8,7 @@ function check_login()
 		$id = $_SESSION['User_Id'];
 		
         // Backend for API
-        $url = "https://nwb8aj3czi.execute-api.me-south-1.amazonaws.com/default/AWS_getId"; // Type your API link here
+        $url = ""; // Type your API link here (AWS_getId Lambda function)
 
         // Sending request through the following configuration...
         $curl = curl_init($url);
@@ -37,20 +37,14 @@ function check_login()
 
         $resp = curl_exec($curl); // Execute our request (POST API)
         curl_close($curl); // Close the connection
-        // var_dump($resp); // Identify the result as variable
-
-        // echo $resp; // Print out the result
         
-        $user_data = json_decode($resp); // Decoding the result into $user_data variable
+        $request_data = json_decode($resp); // Decoding the result into $user_data variable
 
-        // var_dump($user_data);
-        get_object_vars($user_data);
+        get_object_vars($request_data);
 
-        $data = $user_data->checkAuth; // Get responseCode value inside $resCode variable
+        $data = $request_data->checkAuth; // Get responseCode value inside $resCode variable
 
-        echo $data;
-        // var_dump($data);
-        // print_r($data);
+        echo $data; // Print out the result (debug) you can comment this line
 
         if($data == 1) { // IF the responseCode is 2 then go to control page (Successful process)
             return $id;
@@ -71,7 +65,7 @@ function redir_login()
 		$id = $_SESSION['User_Id'];
 		
         // Backend for API
-        $url = "https://nwb8aj3czi.execute-api.me-south-1.amazonaws.com/default/AWS_getId"; // Type your API link here
+        $url = ""; // Type your API link here (AWS_getId Lambda function)
 
         // Sending request through the following configuration...
         $curl = curl_init($url);
@@ -100,22 +94,16 @@ function redir_login()
 
         $resp = curl_exec($curl); // Execute our request (POST API)
         curl_close($curl); // Close the connection
-        // var_dump($resp); // Identify the result as variable
-
-        // echo $resp; // Print out the result
         
-        $user_data = json_decode($resp); // Decoding the result into $user_data variable
+        $request_data = json_decode($resp); // Decoding the result into $user_data variable
 
-        get_object_vars($user_data);
+        get_object_vars($request_data);
 
-        $data = $user_data->checkAuth; // Get responseCode value inside $resCode variable
+        $data = $request_data->checkAuth; // Get responseCode value inside $resCode variable
 
-        echo $data;
-        // print_r($data);
+        echo $data; // Print out the result (debug) you can comment this line
 
         if($data != 1) { // IF the responseCode is 2 then go to control page (Successful process)
-            // echo $data;
-            // echo $_SESSION['User_Id'];
             header("Location: login.php");
             die;
         }

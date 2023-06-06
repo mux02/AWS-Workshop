@@ -1,5 +1,5 @@
 <?php 
-session_start();
+session_start(); // Starting the session
 
 // =============================
 if(isset($_POST['login'])) // When click the button 
@@ -12,7 +12,7 @@ if(isset($_POST['login'])) // When click the button
             $error = '';
 
 			// Backend for API
-            $url = "https://nwb8aj3czi.execute-api.me-south-1.amazonaws.com/default/AWS_Login"; // Type your API link here
+            $url = ""; // Type your API link here (AWS_Login Lambda function)
 
             // Sending request through the following configuration...
             $curl = curl_init($url);
@@ -44,20 +44,14 @@ if(isset($_POST['login'])) // When click the button
             curl_close($curl); // Close the connection
             var_dump($resp); // Identify the result as variable
 
-            // echo $resp; // Print out the result
-            
-            $user_data = json_decode($resp); // Decoding the result into $user_data variable
+            $request_data = json_decode($resp); // Decoding the result into $user_data variable
 
-            var_dump($user_data);
+            var_dump($request_data);
 
-            // echo $user_data->User_Data->Username; // print the username as test
+            $sendValue = $request_data->sendAuth; // Get responseCode value inside $resCode variable
 
-            $resCode = $user_data->sendAuth; // Get responseCode value inside $resCode variable
-
-            // print_r($resCode);
-
-            if($resCode == 1) { // IF the responseCode is 2 then go to control page (Successful process)
-                $user_Id = $user_data->User_Data->User_Id;
+            if($sendValue == 1) { // IF the responseCode is 2 then go to control page (Successful process)
+                $user_Id = $request_data->User_Data->User_Id;
                 $_SESSION['User_Id'] = $user_Id;
 				header("Location: index.php");
 				die;
@@ -233,13 +227,13 @@ button{
         <h3>Login</h3>
         
         <!-- ====== print the error =====-->
-						<?php
-						if(!empty($error)) {
-								foreach ($error as $err){
-								echo $err;
-									}
-								}
-						?>
+		<?php
+			if(!empty($error)) {
+			    foreach ($error as $err){
+				    echo $err;
+				}
+			}
+		?>
         <!-- ==========================-->
 
         <label for="username">Username</label>

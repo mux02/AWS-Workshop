@@ -1,10 +1,9 @@
 <?php 
-session_start();
+  session_start(); // Starting the session
 
-	include("functions.php");
+	include("functions.php"); // To include the code of "Functions.php" in this file as well
 
-	redir_login();
-
+	redir_login(); // for redirecting the user to login page, because this page only for users
 ?>
 
 <!DOCTYPE html>

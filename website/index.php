@@ -1,17 +1,15 @@
 <?php 
-session_start();
+  session_start(); // Starting the session
 
-	include("functions.php");
+	include("functions.php"); // To include the code of "Functions.php" in this file as well
 
-	$user_Id = check_login();
-
+	$user_Id = check_login(); // To check if the user logged in or not
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -71,12 +69,12 @@ session_start();
                         <li><a href="control.php" >Control</a></li>
                         <li><a href="control_add.php" >Add Game</a></li>
                         <?php 
-                          if ($user_Id == 0) {
+                          if ($user_Id == 0) { // if there the user not logged in yet, show the login button
                             echo ' <li><a style="padding-right: 1rem" href="login.php"> Login </a></li>';
                             echo $user_Id;
-                          } elseif ($user_Id >= 1) {
+                          } elseif ($user_Id >= 1) { // if the user logged in, show the profile button
                             echo '<li><a href="profile.php">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>';
-                          } else {
+                          } else { // otherwise, show the login button when there is a problem with login operation
                             echo ' <li><a style="padding-right: 1rem" href="login.php"> Login </a></li>';
                           }
                         ?> 
